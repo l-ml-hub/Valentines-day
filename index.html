@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Serás Mi San Valentín? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Georgia', serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(45deg);
+        animation: float 6s infinite;
+    }
+
+    .heart:before,
+    .heart:after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+    }
+
+    .heart:before {
+        top: -10px;
+        left: 0;
+    }
+
+    .heart:after {
+        left: 10px;
+        top: 0;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) rotate(45deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(45deg);
+            opacity: 0;
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.5s ease-in;
+        overflow-y: auto;
+        padding: 20px 0;
+    }
+
+    .initial-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-button-container {
+        text-align: center;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    .open-btn {
+        background: linear-gradient(135deg, #ff6b9d, #c44569);
+        color: white;
+        border: none;
+        padding: 25px 60px;
+        font-size: 1.5em;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+        font-family: 'Georgia', serif;
+    }
+
+    .open-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
+    }
+
+    .acceptance-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in;
+    }
+
+    .acceptance-card {
+        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .invitation-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 30px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        position: relative;
+        animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        margin: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    @keyframes popIn {
+        0% {
+            transform: scale(0.3) rotate(-5deg);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.05) rotate(2deg);
+        }
+        100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    .invitation-card h1 {
+        font-size: 2em;
+        color: #e91e63;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .invitation-card .message {
+        font-size: 1.1em;
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .invitation-card .special-note {
+        font-size: 1em;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+        padding: 15px;
+        background: #fff5f8;
+        border-radius: 10px;
+        border-left: 4px solid #e91e63;
+    }
+
+    @media (min-width: 768px) {
+        .invitation-card h1 {
+            font-size: 3em;
+        }
+        .invitation-card .message {
+            font-size: 1.3em;
+            line-height: 1.8;
+        }
+        .invitation-card .special-note {
+            font-size: 1.1em;
+            padding: 20px;
+        }
+    }
+
+    .close-btn {
+        background: linear-gradient(135deg, #e91e63, #d81b60);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    }
+
+    .close-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    }
+
+    .ring-emoji {
+        font-size: 2.5em;
+        margin: 15px 0;
+        display: inline-block;
+        animation: spin 3s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(-10deg);
+        }
+        75% {
+            transform: rotate(10deg);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .ring-emoji {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+
+```
+<div class="initial-screen" id="initialScreen">
+    <div class="main-button-container">
+        <h2 style="color: white; font-size: 2em; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            Tienes una invitación especial... 💕
+        </h2>
+        <button class="open-btn" onclick="openInvitation()">
+            Abrir Invitación 💌
+        </button>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" style="display: none;">
+    <div class="invitation-card">
+        <h1>💕 ¿Serás Mi San Valentín? 💕</h1>
+        
+        <div class="message">
+            Mi Amor,
+            <br><br>
+            En el umbral de nuestro para siempre,
+            quiero celebrar un último San Valentín
+            contigo como mi novia...
+            <br><br>
+            Antes de que te conviertas en mi esposa. 💍
+        </div>
+
+        <div class="ring-emoji">💍</div>
+
+        <div class="special-note">
+            Este San Valentín es extra especial porque marca
+            el hermoso camino que hemos recorrido juntos y la
+            increíble aventura que nos espera como esposos.
+            <br><br>
+            ¿Serás mía, una última vez como mi San Valentín?
+        </div>
+
+        <button class="close-btn" onclick="acceptInvitation()">
+            ¡Sí, Acepto! ❤️
+        </button>
+    </div>
+</div>
+
+<div class="acceptance-screen" id="acceptanceScreen" style="display: none;">
+    <div class="acceptance-card">
+        <h1 style="color: #333; font-size: 3em; margin-bottom: 20px;">
+            ¡Sabía que dirías que sí! 🥰
+        </h1>
+        <p style="color: #444; font-size: 1.5em; line-height: 1.8;">
+            Este será nuestro último San Valentín de novios,
+            <br>
+            pero el primero de muchos como futuros esposos.
+            <br><br>
+            Te amo más cada día. 💕
+        </p>
+        <div style="font-size: 5em; margin-top: 30px;">
+            💑 💍 ❤️
+        </div>
+    </div>
+</div>
+
+<script>
+    // Create floating hearts
+    function createHearts() {
+        const heartsContainer = document.getElementById('hearts');
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heartsContainer.appendChild(heart);
+        }
+    }
+
+    function openInvitation() {
+        const initialScreen = document.getElementById('initialScreen');
+        const overlay = document.getElementById('overlay');
+        
+        initialScreen.style.animation = 'fadeIn 0.5s ease-out reverse';
+        setTimeout(() => {
+            initialScreen.style.display = 'none';
+            overlay.style.display = 'flex';
+        }, 500);
+    }
+
+    function acceptInvitation() {
+        const overlay = document.getElementById('overlay');
+        const acceptanceScreen = document.getElementById('acceptanceScreen');
+        
+        overlay.style.animation = 'fadeIn 0.5s ease-out reverse';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            acceptanceScreen.style.display = 'flex';
+        }, 500);
+    }
+
+    // Initialize
+    createHearts();
+</script>
+```
+
+</body>
+</html>
